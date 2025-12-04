@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getafe CF - Sitio Oficial</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+    /* ===== RESET CSS básico ===== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== ESTILOS BASE ===== */
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Fuente online: Roboto; local simulada: Arial */
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== CABECERA Y MENÚ SUPERIOR ===== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #004080; /* Azul Getafe */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.site-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.main-nav a:hover {
+    background-color: #00264d; /* Azul más oscuro */
+}
+
+/* ===== BOTÓN HAMBURGUESA PARA GESTIONAR EL MENÚ LATERAL ===== */
+.open-menu {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 20;
+    font-size: 26px;
+    background-color: #ffffff; /* Blanco */
+    color: #004080; /* Azul */
+    border: 2px solid #004080;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.open-menu.active {
+    background-color: #004080;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* ===== MENÚ LATERAL DESLIZANTE ===== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -230px;
+    width: 230px;
+    height: 100%;
+    background-color: #004080; /* Azul */
+    color: white;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    z-index: 15;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.side-menu a:hover {
+    background-color: #00264d;
+}
+
+/* ===== SECCIONES ===== */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 40px 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #004080;
+    text-decoration: none;
+}
+
+.hero-link:hover {
+    text-decoration: underline;
+}
+
+.galeria-section {
+    margin-bottom: 40px;
+}
+.galeria-grid img,
+.SOLDADOS-grid img {
+width: 150px; /* Tamaño uniforme */
+height: 150px; /* Tamaño uniforme */
+object-fit: cover; /* Recorta sin deformar */
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+transition: transform 0.3s;
+}
+
+
+.galeria-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 15px;
+}
+
+
+.SOLDADOS-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 15px;
+}
+}
+
+.tabla-section {
+    margin-bottom: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #004080;
+    color: white;
+}
+
+.formulario-section {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: 700;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #00264d;
+}
+
+.historia-section {
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.historia-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* ===== PIE DE PÁGINA ===== */
+.site-footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.site-footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+</style>
+    <!-- Fuente online: Roboto de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- CABECERA GLOBAL DEL SITIO -->
+    <header class="site-header">
+        <h1>Getafe CF</h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#tabla">Clasificación</a></li>
+                <li><a href="#formulario">Fan Club</a></li>
+                <li><a href="#historia">Historia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BOTÓN HAMBURGUESA FIJO PARA EL MENÚ LATERAL -->
+    <button class="open-menu" aria-label="Abrir menú lateral">☰</button>
+
+    <!-- MENÚ LATERAL DESLIZANTE -->
+    <nav id="sideMenu" class="side-menu">
+        <ul>
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#tabla">Clasificación</a></li>
+            <li><a href="#formulario">Fan Club</a></li>
+            <li><a href="#historia">Historia</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- SECCIÓN HERO -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h2>¡Bienvenidos al Getafe CF!</h2>
+                <p>El club azulón, fundado en 1983, con pasión por el fútbol y un estadio icónico. ¡Únete a la familia getafense!</p>
+                <a href="https://www.getafecf.com" target="_blank" class="hero-link">Visita la web oficial</a>
+            </div>
+            <div class="hero-image">
+                <img src="escudo getafe.jpeg" alt="Estadio Coliseum Alfonso Pérez">
+            </div>
+        </section>
+
+        <!-- SECCIÓN GALERÍA -->
+        <section id="galeria" class="galeria-section">
+            <h2>ENTRENAMIENTO DE NUESTROS JUGADORES</h2>
+            <div class="galeria-grid"></div>
+                <img src="entremamiento getafe cf.jfif" alt="Entrenamiento 1">
+                <img src="entrenamiento getafe cf 2.jfif" alt="Entrenamiento 2">
+            </div>
+             <h2>NUESTROS SOLDADOS</h2>
+            <div class="SOLDADOS-grid">
+                <img src="jose bordalas.jfif" alt="entrenador alto rey del Getafe CF">
+                <img src="david soria.jfif" alt="Jugador 1">
+                <img src="Djené Dakonam Ortega.jfif" alt="Jugador 2 y primer capitán">
+                <img src="juan iglesias.jpeg" alt="Jugador 3">
+                <img src="diego rico.png" alt="Jugador 4">
+                <img src="luis milla.png" alt="Jugador 5">
+                <img src="mauro arambarri.jpg" alt="Jugador 6">
+                <img src="yvan neyou.jpg" alt="Jugador 7">
+                <img src="mario martin.jfif" alt="Jugador 8">
+                <img src="borja mayoral.jfif" alt="Jugador 9">
+                <img src="allan romeo nyom.png" alt="Jugador 10">
+                <img src="davinchi.png" alt="Jugador 11">
+                <img src="ismael bekhoucha.png" alt="Jugador 12">
+            </div>
+        </section>
+
+        <!-- SECCIÓN TABLA -->
+        <section id="tabla" class="tabla-section">
+            <h2>Clasificación La Liga</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Equipo</th>
+                        <th>Puntos</th>
+                        <th>Partidos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Getafe CF</td>
+                        <td>999 🐐</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Real Betis Balompie</td>
+                        <td>40🤑</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>CA Osasuna</td>
+                        <td>21👹</td>
+                        <td>400</td>
+                    </tr>
+                     <tr>
+                        <td>20</td>
+                        <td>Real Madrid CF</td>
+                        <td>-12😂😂</td>
+                        <td>400</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECCIÓN FORMULARIO -->
+        <section id="formulario" class="formulario-section">
+            <h2>Únete al Fan Club</h2>
+            <form action="#" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                
+                <label for="categoria">Categoría de Fan:</label>
+                <select id="categoria" name="categoria">
+                    <option value="vip">VIP</option>
+                    <option value="estandar">Estándar</option>
+                    <option value="juvenil">Juvenil</option>
+                </select>
+                
+                <button type="submit">Enviar Solicitud</button>
+            </form>
+        </section>
+
+        <!-- SECCIÓN ADICIONAL: HISTORIA -->
+        <section id="historia" class="historia-section">
+            <h2>Historia del Club</h2>
+            <p>El Getafe CF nació en 1946 y ha crecido hasta convertirse en un equipo de Primera División. Conoce sus hitos:</p>
+            <ul>
+                <li>Ascenso a Primera en 2004.</li>
+                <li>Final de Copa del Rey en 2008.</li>
+                <li>Estadio Coliseum Alfonso Pérez con capacidad para 17.000 espectadores.</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="site-footer">
+        <p>&copy; 2025 - Getafe CF. <a href="#hero">Volver al inicio</a></p>
+    </footer>
+
+    <!-- JavaScript mínimo para abrir/cerrar el menú lateral -->
+    <script>
+        const sideMenu = document.getElementById("sideMenu");
+        const toggleBtn = document.querySelector(".open-menu");
+        toggleBtn.addEventListener("click", () => {
+            sideMenu.classList.toggle("active");
+            toggleBtn.classList.toggle("active");
+            toggleBtn.textContent = sideMenu.classList.contains("active") ? "✖" : "☰";
+        });
+    </script>
+</body>
+</html>
